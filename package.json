@@ -90,5 +90,15 @@
     "sinon-chai": "^2.6.0",
     "wiredep": "^2.2.2",
     "yargs": "^3.32.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naturenet/naturenet-www.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/naturenet/naturenet-www/issues"
+  },
+  "homepage": "https://github.com/naturenet/naturenet-www#readme"
 }
