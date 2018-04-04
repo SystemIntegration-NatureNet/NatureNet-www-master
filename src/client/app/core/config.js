@@ -65,13 +65,14 @@
     exceptionHandlerProvider.configure(config.appErrorPrefix);
     routerHelperProvider.configure({ docTitle: ' | ' + config.appTitle, });
   }
-
-  core.constant('FirebaseName', 'naturenet-staging');
+//Change this line for Firebase Name
+  core.constant('FirebaseName', 'fir-2125e');
 
   core.config(function (FirebaseName) {
     //TODO: set value of database and logging in build
     firebase.initializeApp({
-      apiKey: 'AIzaSyAQFqNCV7kdLHzkiBhtFzMmYoQLdlivNFU',
+      //Change this line for Firebase API Key
+      apiKey: 'AIzaSyCFcyM6osuraatazdJzS4X4v1swxWQFgvg',
       authDomain: FirebaseName + '.firebaseapp.com',
       databaseURL: 'https://' + FirebaseName + '.firebaseio.com',
       storageBucket: FirebaseName + '.appspot.com',
