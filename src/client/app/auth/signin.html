@@ -4,6 +4,13 @@
     <div class="modal-header">
       <button type="button" class="close" ng-click="vm.close()" aria-hidden="true">&times;</button>
       <div class="modal-title">
+        
+          <form class="auth__form auth__form--signin"
+                ng-submit="vm.loginWithGoogle()">
+
+        <input style="width:100%;" class="button"
+            value="sign in With Google"
+            type="submit" />
 
         <form class="auth__form auth__form--signin"
           ng-submit="vm.login(vm.email, vm.password)">
@@ -28,6 +35,8 @@
           <input style="width:100%;" class="button"
             value="sign in"
             type="submit" />
+
+            
 
         </form>
       </div>

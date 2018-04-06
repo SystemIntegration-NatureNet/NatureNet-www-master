@@ -80,6 +80,7 @@
     vm.apply = apply;
     vm.close = close;
     vm.reset = reset;
+    vm.loginWithGoogle = loginWithGoogle;
 
     activate();
 
@@ -107,6 +108,19 @@
           }
         });
     }
+
+    function loginWithGoogle(){
+      console.log('Inside Google Login Method');
+      dataservice.getGoogleAuth();
+    }
+
+    function checkLoginState() {
+      FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+      });
+      
+    }
+
 
     function createUser() {
       var profile = {
@@ -267,9 +281,10 @@
     }
 
     function login(email, password) {
-      if (checkValidity()) {
-        authWithPassword(email, password);
-      }
+      dataservice.getGoogleAuth();
+      //if (checkValidity()) {
+        //authWithPassword(email, password);
+     // }
     }
 
     function apply() {
