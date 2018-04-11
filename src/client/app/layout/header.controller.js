@@ -11,6 +11,7 @@
   HeaderController.$inject = [
     '$rootScope',
     '$state',
+    '$filter',
     'routerHelper',
     'logger',
     'dataservice',
@@ -20,6 +21,7 @@
   function HeaderController(
     $rootScope,
     $state,
+    $filter,
     routerHelper,
     logger,
     dataservice
@@ -32,6 +34,7 @@
 
     // Data
     vm.userUid = void 0;
+    vm.query = '';
 
     // States
     vm.isMapActive = false;
@@ -45,6 +48,8 @@
     vm.showSignin = showSignin;
     vm.signOut = signOut;
     vm.showEdit = showEdit;
+    vm.search = search;
+    vm.projects = [];
 
     activate();
 
@@ -58,6 +63,15 @@
 
     /* Data functions
        ================================================== */
+    function search(){
+      vm.projects = dataservice.getProjectsbyName(vm.query);
+      //vm.projects = $filter('orderBy')(data, 'latest_contribution', true);
+      console.log(vm.projects);
+      console.log('query: '+vm.query);
+    }
+
+
+
 
     function getAuth() {
       return dataservice.onAuthStateChanged(onAuthChanged);

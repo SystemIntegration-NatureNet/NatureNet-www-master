@@ -1,8 +1,37 @@
+<!-- Facebook SDK for JAVAScript -->
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '175059703215306',
+          cookie     : true,
+          xfbml      : true,
+          version    : 'v2.12'
+        }); 
+          
+        FB.AppEvents.logPageView();   
+          
+      };
+    
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "https://connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+
 <form novalidate ng-submit="vm.apply()">
 
   <div class="auth__text">
     You are invited to participate in NatureNet, a research project being conducted by the researchers listed at <a href="http://research.nature-net.org/people.html" target="_blank">http://research.nature-net.org/people.html</a>. Researchers are interested in seeing what kind of information is posted to NatureNet and how it is used and shared. Your name and email will not be visible to any other participants unless you so choose, and we will not provide it to any third party.
   </div>
+
+  <fb:login-button 
+  scope="public_profile,email"
+  onlogin="checkLoginState();">
+  </fb:login-button>
+
 
   <div style="padding-top: 15px;" class="input-group">
     <span class="input-group-addon">

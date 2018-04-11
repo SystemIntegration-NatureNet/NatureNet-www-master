@@ -84,6 +84,7 @@
       getProjectsRecent: getProjectsRecent,
       getProjectById: getProjectById,
       getProjectsAtSite: getProjectsAtSite,
+      getProjectsbyName:getProjectsbyName,
 
       // Idea functions
       getIdeasByUserId: getIdeasByUserId,
@@ -900,8 +901,20 @@
       }
     }
 
-    function getProjects() {
+    function getProjectsbyName(name) {
 
+
+      if (!name) {
+        console.log('Name does not exist');
+        return $q.when(null);
+      }
+
+      return getArray('activities');
+    }
+
+
+    function getProjects() {
+     
       return $firebaseObject($firebaseRef.projects).$loaded()
         .then(success)
         .catch(fail);
