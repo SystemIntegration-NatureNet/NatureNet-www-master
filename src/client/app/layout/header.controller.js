@@ -50,6 +50,13 @@
     vm.showEdit = showEdit;
     vm.search = search;
     vm.projects = [];
+    vm.users = [];
+    vm.groups = [];
+    vm.sites = [];
+    vm.tags = [];
+    vm.obs = [];
+    vm.ideas = [];
+
 
     activate();
 
@@ -66,7 +73,21 @@
     function search(){
       vm.projects = dataservice.getProjectsbyName(vm.query);
       //vm.projects = $filter('orderBy')(data, 'latest_contribution', true);
+      //vm.projects = dataservice.getArray('activities');
+      vm.users = dataservice.getArray('users');
+      vm.groups = dataservice.getGroups();
+      vm.sites = dataservice.getSites();
+      vm.tags = dataservice.getTags();
+      vm.ideas = dataservice.getArray('ideas');
+      vm.obs = dataservice.getArray('observations');
+
       console.log(vm.projects);
+      console.log(vm.users);
+      console.log(vm.groups);
+      console.log(vm.sites);
+      console.log(vm.obs);
+
+      
       console.log('query: '+vm.query);
     }
 
