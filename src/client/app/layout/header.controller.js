@@ -12,6 +12,7 @@
     '$rootScope',
     '$state',
     '$filter',
+    '$location',
     'routerHelper',
     'logger',
     'dataservice',
@@ -22,6 +23,7 @@
     $rootScope,
     $state,
     $filter,
+    $location,
     routerHelper,
     logger,
     dataservice
@@ -89,10 +91,9 @@
       console.log(getUsersByName());
       console.log(getProjectsByName());
       console.log(getIdeasByName());
-      //console.log(vm.sites);
+      //console.log(lvm.sites);
       //console.log(vm.obs);
-
-      
+      $location.path('search');
       //console.log('query: '+vm.query);
       //vm.query = '';
     }
