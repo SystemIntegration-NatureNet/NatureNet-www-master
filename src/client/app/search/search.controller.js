@@ -42,30 +42,30 @@
     vm.showPopup = false;
 
     // Function assignments
-    vm.getClasses = getClasses;
-    vm.toggleMap = toggleMap;
-    vm.showRegister = showRegister;
-    vm.showSignin = showSignin;
-    vm.signOut = signOut;
-    vm.showEdit = showEdit;
-    vm.search = search;
-    vm.projects = [];
-    vm.users = [];
-    vm.groups = [];
-    vm.sites = [];
-    vm.tags = [];
-    vm.obs = [];
-    vm.ideas = [];
+    // vm.getClasses = getClasses;
+    // vm.toggleMap = toggleMap;
+    // vm.showRegister = showRegister;
+    // vm.showSignin = showSignin;
+    // vm.signOut = signOut;
+    // vm.showEdit = showEdit;
+    // vm.search = search;
+    // vm.projects = [];
+    // vm.users = [];
+    // vm.groups = [];
+    // vm.sites = [];
+    // vm.tags = [];
+    // vm.obs = [];
+    // vm.ideas = [];
 
 
-    activate();
+     activate();
 
     /* Activate function
        ================================================== */
 
-    function activate() {
-      getAuth();
-      getNavRoutes();
-    }
+     function activate() {
+       console.log("below query");
+       console.log($rootScope.query);
+      }
   }
 })();

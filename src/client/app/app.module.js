@@ -14,6 +14,7 @@
       'app.projects',
       'app.ideas',
       'hashtagify',
+      'app.search',
     ]);
 
 })();

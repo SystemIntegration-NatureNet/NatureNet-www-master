@@ -12,9 +12,13 @@
     '$rootScope',
     '$state',
     '$filter',
+    '$location',
     'routerHelper',
     'logger',
     'dataservice',
+    // '$window',
+    // '$location',
+
   ];
 
   /* @ngInject */
@@ -22,6 +26,8 @@
     $rootScope,
     $state,
     $filter,
+    $location,
+
     routerHelper,
     logger,
     dataservice
@@ -71,30 +77,18 @@
     /* Data functions
        ================================================== */
     function search(){
-      //vm.projects = dataservice.getArray('activities');
-      //vm.users = dataservice.getArray('users');
-      //vm.groups = dataservice.getGroups();
-      //vm.sites = dataservice.getSites();
-      //vm.tags = dataservice.getTags();
-     // vm.obs = dataservice.getArray('observations');
-      
-    
+
+      $rootScope.query = vm.query;
 
 
-      //console.log(getIdeasByName());
-      //console.log(getProjectsByName());
       console.log('query: '+vm.query);
       console.log(getSitesByName());
-     // console.log(getObservationByName());
+
       console.log(getUsersByName());
       console.log(getProjectsByName());
       console.log(getIdeasByName());
-      //console.log(vm.sites);
-      //console.log(vm.obs);
 
-      
-      //console.log('query: '+vm.query);
-      //vm.query = '';
+      $location.path('search');
     }
 
     function getSitesByName(){

@@ -17,7 +17,7 @@
         state: 'search',
         config: {
           url: '/search',
-          templateUrl: 'app/explore/search.html',
+          templateUrl: 'app/search/search.html',
           controller: 'SearchController',
           controllerAs: 'vm',
           title: 'Search',
