@@ -27,7 +27,6 @@
     $state,
     $filter,
     $location,
-
     routerHelper,
     logger,
     dataservice
@@ -88,7 +87,11 @@
       console.log(getProjectsByName());
       console.log(getIdeasByName());
 
+      //console.log(lvm.sites);
+      //console.log(vm.obs);
       $location.path('search');
+      //console.log('query: '+vm.query);
+      //vm.query = '';
     }
 
     function getSitesByName(){
