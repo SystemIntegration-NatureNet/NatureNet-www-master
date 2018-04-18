@@ -49,23 +49,95 @@
     // vm.signOut = signOut;
     // vm.showEdit = showEdit;
     // vm.search = search;
-    // vm.projects = [];
-    // vm.users = [];
+     vm.projects = [];
+     vm.users = [];
     // vm.groups = [];
-    // vm.sites = [];
+     vm.sites = [];
     // vm.tags = [];
-    // vm.obs = [];
-    // vm.ideas = [];
+     vm.obs = [];
+     vm.ideas = [];
 
 
      activate();
 
+     function getSitesByName(){
+      vm.sites = [];
+      return dataservice.getArray('sites')
+        .then(function (data){
+          angular.forEach(data,function(site){
+            if(site.name.startsWith(vm.query)){
+              vm.sites.push(site);
+            }
+          })
+          return vm.sites;
+        })
+    }
+
+    function getObservationByName(){
+      vm.obs = [];
+      return dataservice.getArray('observations')
+        .then(function (data){
+          angular.forEach(data,function(ob){
+            if(ob.data.text.startsWith(vm.query)){
+              vm.obs.push(ob);
+            }
+          })
+          return vm.obs;
+        })
+    }
+
+    function getUsersByName(){
+      vm.users = [];
+      return dataservice.getArray('users')
+        .then(function (data){
+          angular.forEach(data,function(user){
+              if(user.display_name.startsWith(vm.query)){
+                vm.users.push(user);
+              }
+          })
+          return vm.users;
+        })
+    }
+
+    function getProjectsByName(){
+      vm.projects = [];
+      return dataservice.getArray('activities')
+        .then(function (data){
+          //console.log(vm.query);
+          angular.forEach(data,function(project){
+            if(project.name.startsWith(vm.query)){
+              vm.projects.push(project);
+            }
+          })
+          return vm.projects;
+        })
+    }
+
+    function getIdeasByName(){
+      vm.ideas = [];
+      return dataservice.getArray('ideas')
+        .then(function (data) {
+          angular.forEach(data,function(idea){
+            if(idea.content.startsWith(vm.query)){
+              vm.ideas.push(idea);
+            }
+          })
+          return vm.ideas;
+        })
+    }
     /* Activate function
        ================================================== */
 
      function activate() {
        console.log("below query");
        console.log($rootScope.query);
+       console.log(getSitesByName());
+
+      console.log(getUsersByName());
+      console.log(getProjectsByName());
+      console.log(getIdeasByName());
       }
+
+      
   }
 })();
