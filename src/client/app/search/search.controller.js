@@ -157,7 +157,8 @@
       return dataservice.getArray('users')
         .then(function (data) {
           angular.forEach(data, function (user) {
-            if (user.display_name.startsWith(vm.query)) {
+            var name = user.display_name.toLowerCase();
+            if (name.startsWith(vm.query)) {
               vm.users.push(user);
             }
           })
@@ -171,7 +172,8 @@
         .then(function (data) {
           //console.log(vm.query);
           angular.forEach(data, function (project) {
-            if (project.name.startsWith(vm.query)) {
+            var desc = project.description.replace(',','').replace('.','').replace('\'','').toLowerCase().split(' ');
+            if (project.name.startsWith(vm.query) || desc.indexOf(vm.query) > -1) {
               vm.projects.push(project);
             }
           })
@@ -215,13 +217,14 @@
     function activate() {
       console.log("below query");
       vm.query = $rootScope.query;
-      if(!vm.query || vm.query !== "undefined" || typeof vm.query === "string" && vm.query.length > 0){
+      vm.showDetail = false;  
+      vm.show = false;
+      if(vm.query && vm.query !== "undefined" && typeof vm.query === "string" && vm.query.length > 0){
         vm.query = vm.query.toLowerCase();
       }
       console.log(vm.query);
 
-      vm.showDetail = false;  
-      vm.show = false;
+      
       console.log(getSitesByName());
 
       console.log(getUsersByName());
