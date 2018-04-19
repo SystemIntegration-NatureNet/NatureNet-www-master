@@ -172,11 +172,13 @@
         </a>
       </li>
 
-      <li class="nav-item">
-        <form id="search-form" ng-submit="vm.search()" >
-          <input class="form-control" placeholder="Search" type="text" ng-model="vm.query" />
-        </form>
-      </li>
+
+        <li class="nav-item" style="margin-left:200px;margin-top:20px;">
+          <form id="search-form" ng-submit="vm.search()" >
+            <input class="form-control" placeholder="Search" type="text" ng-model="vm.query" />
+          </form>
+        </li>
+
 
       <li ng-show="vm.isAuthenticated" class="nav-item collapse-only">
         <a ng-click="vm.showEdit()">
@@ -186,6 +188,9 @@
         <a ng-click="vm.signOut()">Sign Out</a>
       </li>
     </ul>
+
+
+
     <ul class="nav navbar-nav navbar-right">
       <li class="nav-item" ng-hide="vm.isAuthenticated">
         <a href="#" ng-click="vm.showRegister()">
