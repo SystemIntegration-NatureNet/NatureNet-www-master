@@ -3,6 +3,7 @@
     <table>
         <tr>
             <div>
+                <div class="h1 center-block">Ideas</div>
                 <div class="list-item list-item--square" ng-if="vm.ideas.length > 0" ng-repeat="i in vm.ideas | filter:{ status:'!deleted' } | orderBy: '-updated_at' | limitTo: 5"
                     ng-click="showIdea(i)">
                     <div class="list-item__detail list-item__noimage">
@@ -11,10 +12,12 @@
                         </nn-comment>
                     </div>
                 </div>
+                <div ng-if="vm.ideas.length === 0">No Ideas found.</div>
             </div>
         </tr>
         <tr>
             <div>
+                    <div class="h1 center-block">Projects</div>
                 <div class="list-item list-item--square" style="cursor: pointer;" ng-if="vm.projects.length > 0" ng-repeat="o in vm.projects | filter:{ status:'!deleted' } | orderBy: '-updated_at' | limitTo: 5"
                     ng-click="showObservation(o)">
                     <div class="list-item__detail list-item__noimage">
@@ -24,11 +27,12 @@
                     </div>
                 </div>
             </div>
-            <div ng-if="vm.projects.length === 0">No Observations.</div>
+            <div ng-if="vm.projects.length === 0">No Projects found.</div>
         </tr>
 
         <tr>
             <div>
+                    <div class="h1 center-block">Sites</div>
                 <div class="list-item list-item--square" style="cursor: pointer;" ng-if="vm.sites.length > 0" ng-repeat="o in vm.sites | filter:{ status:'!deleted' } | orderBy: '-updated_at' | limitTo: 5"
                     ng-click="showObservation(o)">
                     <div class="list-item__detail list-item__noimage">
@@ -37,8 +41,22 @@
                         </nn-comment>
                     </div>
                 </div>
+                <div ng-if="vm.sites.length === 0">No Sites found.</div>
             </div>
-            <div ng-if="vm.projects.length === 0">No Observations.</div>
+
+        </tr>
+        <tr>
+            <div>
+                    <div class="h1 center-block">Users</div>
+                <div class="list-item list-item--square" style="cursor: pointer;" ng-if="vm.users.length > 0" ng-repeat="o in vm.users | filter:{ status:'!deleted' } | orderBy: '-updated_at' | limitTo: 10"
+                    ng-click="showObservation(o)">
+                    <div ng-if="imageOnly!=='true'" class="list-item__detail">
+                        <nn-badge class="nn-badge item__user" title="{{o.display_name}}" subtitle="{{formatDate(o.updated_at)}}" avatar-url="{{o.avatar}}">
+                        </nn-badge>
+                    </div>
+                </div>
+                <div ng-if="vm.users.length === 0">No Users found.</div>
+            </div>
         </tr>
     </table>
 </div>

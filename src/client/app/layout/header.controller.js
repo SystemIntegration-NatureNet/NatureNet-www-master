@@ -80,11 +80,17 @@
       $rootScope.query = vm.query;
 
 
+
       console.log('query: '+vm.query);
       
       //console.log(lvm.sites);
       //console.log(vm.obs);
+      if($state.current.name == 'search'){
+        $state.go($state.current, {}, {reload: true});
+      }
       $location.path('search');
+      console.log($state.current);
+      
       //console.log('query: '+vm.query);
       //vm.query = '';
     }

@@ -56,7 +56,7 @@
     // vm.tags = [];
     vm.obs = [];
     vm.ideas = [];
-
+   
 
     activate();
 
@@ -67,7 +67,8 @@
       return dataservice.getArray('sites')
         .then(function (data) {
           angular.forEach(data, function (site) {
-            if (site.name.startsWith(vm.query)) {
+            var names = site.name.replace(',','').replace('.','').replace('\'','').toLowerCase().split(' ');
+            if ((names.indexOf(vm.query) > -1) || vm.query == '') {
               vm.sites.push(site);
             }
           })
@@ -121,7 +122,8 @@
       return dataservice.getArray('ideas')
         .then(function (data) {
           angular.forEach(data, function (idea) {
-            if (idea.content.startsWith(vm.query)) {
+            var contents = idea.content.replace(',','').replace('.','').replace('\'','').toLowerCase().split(' ');
+            if (contents.indexOf(vm.query) > -1) {
               vm.ideas.push(idea);
             }
           })
@@ -133,7 +135,11 @@
 
     function activate() {
       console.log("below query");
-      console.log($rootScope.query);
+      vm.query = $rootScope.query;
+      if(vm.query != ''){
+        vm.query = vm.query.toLowerCase();
+      }
+      console.log(vm.query);
       console.log(getSitesByName());
 
       console.log(getUsersByName());
