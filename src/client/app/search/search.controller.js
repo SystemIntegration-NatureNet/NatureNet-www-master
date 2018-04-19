@@ -15,6 +15,8 @@
     'routerHelper',
     'logger',
     'dataservice',
+    '$q',
+    '$scope'
   ];
 
   /* @ngInject */
@@ -24,7 +26,9 @@
     $filter,
     routerHelper,
     logger,
-    dataservice
+    dataservice,
+    $q,
+    $scope
   ) {
     var vm = this;
     var states = routerHelper.getStates();
@@ -49,17 +53,58 @@
     // vm.signOut = signOut;
     // vm.showEdit = showEdit;
     // vm.search = search;
+    vm.updateProjectId = updateProjectId;
+
+
+    vm.showMoreIdeas = showMoreIdeas;
+    vm.showMoreProjects = showMoreProjects;
+    vm.showMoreSites = showMoreSites;
+    vm.showMoreUsers = showMoreUsers;
+
+
+    vm.projectObservations = [];
     vm.projects = [];
     vm.users = [];
+    vm.showDetail = false;
+    vm.userDisplayLimit = 5;
+    vm.projectDisplayLimit = 5;
+    vm.siteDisplayLimit = 5;
+    vm.ideaDisplayLimit = 5;
+  
     // vm.groups = [];
     vm.sites = [];
     // vm.tags = [];
+    vm.selectIdea = selectIdea;
     vm.obs = [];
     vm.ideas = [];
-   
+   vm.show = false;
 
     activate();
 
+    function showMoreIdeas(){
+      vm.ideaDisplayLimit = vm.ideaDisplayLimit + 5;
+    }
+
+    function showMoreProjects(){
+      vm.projectDisplayLimit = vm.projectDisplayLimit + 5;
+    }
+
+    function showMoreSites(){
+      vm.siteDisplayLimit = vm.siteDisplayLimit + 5;
+    }
+
+    function showMoreUsers(){
+      vm.userDisplayLimit = vm.userDisplayLimit + 5;
+    }
+
+    $rootScope.$on('map:show', showObservation);
+    $scope.$watch('vm.selectedIdea', loadComments);
+
+    function selectIdea(idea) {
+      vm.selectedIdea = idea;
+      vm.showDetail = true;
+      //closeDrawer();
+    }
 
 
     function getSitesByName() {
@@ -68,12 +113,29 @@
         .then(function (data) {
           angular.forEach(data, function (site) {
             var names = site.name.replace(',','').replace('.','').replace('\'','').toLowerCase().split(' ');
-            if ((names.indexOf(vm.query) > -1) || vm.query == '') {
+            if ((names.indexOf(vm.query) > -1) || vm.query === '') {
               vm.sites.push(site);
             }
           })
           return vm.sites;
         })
+    }
+    function showObservation (event, o) {
+
+      if (!!o) {
+        loadComments(o);
+        vm.projectObservation = o;
+      }
+    }
+    function loadComments(currentObservation) {
+      vm.comments = void 0;
+      if (!!currentObservation) {
+        return dataservice.getCommentsForRecord(currentObservation)
+          .then(function (data) {
+            vm.comments = data;
+            return vm.comments;
+          });
+      }
     }
     function showIdea(i) {
     }
@@ -116,6 +178,23 @@
           return vm.projects;
         })
     }
+    function getObservationsByProjectId(id) {
+      return dataservice.getObservationsByProjectId(id)
+        .then(function (data) {
+          vm.projectObservations = data;
+          return vm.projectObservations;
+        });
+    }
+    function updateProjectId(id) {
+      var promises = [getObservationsByProjectId(id)];
+      return $q.all(promises)
+        .then(function () {
+          vm.projectId = id;
+          vm.show = true;
+          //closeDrawer();
+          logger.info('Updated Projects View based on new projectId');
+        });
+    }
 
     function getIdeasByName() {
       vm.ideas = [];
@@ -136,10 +215,13 @@
     function activate() {
       console.log("below query");
       vm.query = $rootScope.query;
-      if(vm.query != ''){
+      if(!vm.query || vm.query !== "undefined" || typeof vm.query === "string" && vm.query.length > 0){
         vm.query = vm.query.toLowerCase();
       }
       console.log(vm.query);
+
+      vm.showDetail = false;  
+      vm.show = false;
       console.log(getSitesByName());
 
       console.log(getUsersByName());
