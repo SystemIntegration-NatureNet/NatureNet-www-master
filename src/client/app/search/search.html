@@ -1,5 +1,16 @@
-<div ng-controller="SearchController">
-    <table>
+<style>
+.menubar{
+  top: 0;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      overflow: scroll;
+}
+</style>
+
+<div ng-controller="SearchController" class="menubar">
+    <table style="width=100%; height=100%;">
         <tr>
             <div>
                 <div class="h3">Ideas</div>
@@ -15,7 +26,7 @@
                 <div ng-if="vm.ideas.length === 0">No Ideas found.</div>
             </div>
 
-           
+
         </tr>
         <tr>
             <div>
@@ -32,7 +43,7 @@
 
             </div>
             <div ng-if="vm.projects.length === 0">No Projects found.</div>
-           
+
 
         </tr>
 
@@ -66,8 +77,8 @@
                 <div ng-if="vm.users.length === 0">No Users found.</div>
             </div>
         </tr>
-    </table>
-</div>
+      </table>
+    </div>
 
 
 <div ng-click="vm.showDetail=false" ng-if="vm.selectedIdea && vm.showDetail" style=" z-index:1000; min-height:100vh; position:absolute; background-color: rgba(60, 100, 100, 0.95); height:100%;"
