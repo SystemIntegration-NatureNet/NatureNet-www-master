@@ -10,6 +10,7 @@
 </style>
 
 <div ng-controller="SearchController" class="menubar">
+    <div class="h2">Search Results</div>
     <table style="width=100%; height=100%;">
         <tr>
             <div>
@@ -22,7 +23,10 @@
                         </nn-comment>
                     </div>
                 </div>
-                <a href="#" ng-click="vm.showMoreIdeas()">Show More</a>
+                <div ng-if="vm.ideas.length > 5">
+                        <a href="#" ng-click="vm.showMoreIdeas()">Show More</a>
+                </div>
+                
                 <div ng-if="vm.ideas.length === 0">No Ideas found.</div>
             </div>
 
@@ -39,7 +43,10 @@
                         </nn-comment>
                     </div>
                 </div>
-                <a href="#" ng-click="vm.showMoreProjects()">Show More</a>
+                <div ng-if="vm.projects.length > 5">
+                        <a href="#" ng-click="vm.showMoreProjects()">Show More</a>
+                </div>
+                
 
             </div>
             <div ng-if="vm.projects.length === 0">No Projects found.</div>
@@ -58,7 +65,9 @@
                         </nn-comment>
                     </div>
                 </div>
-                <a href="#" ng-click="vm.showMoreSites()">Show More</a>
+                <div ng-if="vm.sites.length > 5">
+                        <a href="#" ng-click="vm.showMoreSites()">Show More</a>
+                </div>
                 <div ng-if="vm.sites.length === 0">No Sites found.</div>
             </div>
 
@@ -73,7 +82,10 @@
                         </nn-badge>
                     </div>
                 </div>
-                <a href="#" ng-click="vm.showMoreUsers()">Show More</a>
+                <div ng-if="vm.users.length > 5">
+                        <a href="#" ng-click="vm.showMoreUsers()">Show More</a>
+                </div>
+                
                 <div ng-if="vm.users.length === 0">No Users found.</div>
             </div>
         </tr>
