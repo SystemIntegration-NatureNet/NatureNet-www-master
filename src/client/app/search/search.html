@@ -1,1 +1,6 @@
 //This is the search page
+<div ng-controller="SearchController">
+    <ul>
+        <li ng-repeat="name in vm.ideas"><a href="#">{{name}}</a></li>
+    </ul>
+</div>

@@ -114,7 +114,7 @@
     }
 
     function getIdeasByName(){
-      vm.ideas = [];
+    vm.ideas = [];
       return dataservice.getArray('ideas')
         .then(function (data) {
           angular.forEach(data,function(idea){
@@ -122,7 +122,7 @@
               vm.ideas.push(idea);
             }
           })
-          return vm.ideas;
+          return $rootScope.vm.ideas;
         })
     }
     /* Activate function
@@ -138,6 +138,6 @@
       console.log(getIdeasByName());
       }
 
-      
+
   }
 })();
