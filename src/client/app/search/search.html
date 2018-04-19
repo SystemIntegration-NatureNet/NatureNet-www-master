@@ -1,6 +1,56 @@
-//This is the search page
-<div ng-controller="SearchController">
-    <ul>
-        <li ng-repeat="name in vm.ideas"><a href="#">{{name}}</a></li>
-    </ul>
-</div>
+    //This is the search page
+    <div ng-controller="SearchController">
+ 
+            <div class="list-item list-item--square"
+            ng-if="vm.ideas.length > 0"
+            ng-repeat="i in vm.ideas | filter:{ status:'!deleted' } | orderBy: '-updated_at' | limitTo: 10"
+            ng-click="showIdea(i)">
+            <div class="list-item__detail list-item__noimage">
+              <nn-comment class="comment list-item__comment"
+                limit="120"
+                name="{{$root.users[i.submitter].display_name}}"
+                date="{{i.updated_at}}"
+                avatar-url="{{$root.users[i.submitter].avatar}}"
+                comment="{{i.content}}">
+              </nn-comment>
+            </div>
+          </div>
+
+
+          <div class="list-item list-item--square"
+        style="cursor: pointer;"
+        ng-if="vm.projects.length > 0"
+        ng-repeat="o in vm.projects | filter:{ status:'!deleted' } | orderBy: '-updated_at' | limitTo: 10"
+        ng-click="showObservation(o)">
+     <div class="list-item__detail list-item__noimage">
+         <nn-comment class="comment list-item__comment"
+                limit="120"
+                name="{{o.name}}"
+                date="{{i.updated_at}}"
+                avatar-url="{{$root.users[o.submitter].avatar}}"
+                comment="{{o.description}}">
+              </nn-comment>
+    </div>
+    </div>
+  <div ng-if="vm.projects.length === 0">No Observations.</div>
+
+
+
+  <div class="list-item list-item--square"
+        style="cursor: pointer;"
+        ng-if="vm.sites.length > 0"
+        ng-repeat="o in vm.sites | filter:{ status:'!deleted' } | orderBy: '-updated_at' | limitTo: 10"
+        ng-click="showObservation(o)">
+     <div class="list-item__detail list-item__noimage">
+         <nn-comment class="comment list-item__comment"
+                limit="120"
+                name="{{o.name}}"
+                date="{{i.updated_at}}"
+                avatar-url="{{$root.users[o.submitter].avatar}}"
+                comment="{{o.description}}">
+              </nn-comment>
+    </div>
+    </div>
+  <div ng-if="vm.sites.length === 0">No Observations.</div>
+    </div>
+

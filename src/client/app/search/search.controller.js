@@ -72,7 +72,8 @@
           return vm.sites;
         })
     }
-
+    function showIdea(i) {
+    }
     function getObservationByName(){
       vm.obs = [];
       return dataservice.getArray('observations')
@@ -122,7 +123,7 @@
               vm.ideas.push(idea);
             }
           })
-          return $rootScope.vm.ideas;
+          return vm.ideas;
         })
     }
     /* Activate function
